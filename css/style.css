@@ -11,14 +11,15 @@ body {
     color: #333;
 }
 
+/* Header */
 header {
     position: relative;
-    background: linear-gradient(rgba(228, 175, 175, 0), rgba(53, 53, 53, 0.6)), url('/img/ola.jpg');
     background-size: cover;
     background-position: center;
     color: #fff;
     text-align: center;
-    padding: 300px 20px;
+    padding: 150px 20px; /* Ajuste para reduzir a altura */
+    background: linear-gradient(rgba(228, 175, 175, 0), rgba(53, 53, 53, 0.6)), url('img/oi.jpg');
 }
 
 .navbar {
@@ -31,6 +32,13 @@ header {
     width: 100%;
     top: 0;
     left: 0;
+    z-index: 1000;
+}
+
+.navbar .hamburger {
+    display: none;
+    font-size: 1.5rem;
+    cursor: pointer;
 }
 
 .nav-links {
@@ -51,15 +59,14 @@ header {
     background: #8b7951;
 }
 
+.logo img {
+    max-height: 55px; /* Ajuste para logo proporcional */
+    width: auto;
+}
+
 .banner h1 {
     font-size: 3rem;
     margin-bottom: 20px;
-}
-
-.logo img {
-    max-height: 55px; /* Ajuste a altura da logo */
-    width: auto; /* Mantém a proporção */
-    display: block; /* Evita comportamento estranho com elementos inline */
 }
 
 .banner p {
@@ -67,6 +74,7 @@ header {
     margin-bottom: 30px;
 }
 
+/* Botão */
 .btn {
     display: inline-block;
     background: #d8bb7e;
@@ -81,6 +89,7 @@ header {
     background: #8b7951;
 }
 
+/* Main Section */
 main {
     padding: 40px 20px;
 }
@@ -90,10 +99,10 @@ main {
     margin-bottom: 20px;
 }
 
-/* Ajuste do grid */
+/* Grid de produtos */
 .grid-produtos {
     display: grid;
-    grid-template-columns: repeat(3, 1fr); /* Exatamente 3 colunas */
+    grid-template-columns: repeat(3, 1fr);
     gap: 20px;
     margin-top: 20px;
 }
@@ -107,17 +116,18 @@ main {
 }
 
 .produto img {
-    width: 250px; /* Largura fixa */
-    height: 250px; /* Altura fixa */
-    object-fit: cover; /* Mantém a proporção e centraliza */
+    width: 250px;
+    height: 250px;
+    object-fit: cover;
     margin-bottom: 10px;
-    border-radius: 5px; /* Opcional: deixa as bordas arredondadas */
+    border-radius: 5px;
 }
 
 .produto:hover {
     transform: translateY(-5px);
 }
 
+/* Footer */
 footer {
     background: rgb(77, 73, 52);
     color: #fff;
@@ -130,12 +140,11 @@ footer {
     display: flex;
     justify-content: space-between;
     gap: 20px;
-    margin-bottom: 20px;
-    flex-wrap: wrap; /* Para garantir que o conteúdo se ajuste em telas menores */
+    flex-wrap: wrap;
 }
 
 .sobre-nos, .links-importantes {
-    flex: 1 1 300px; /* Faz com que as seções se ajustem */
+    flex: 1 1 300px;
     text-align: left;
 }
 
@@ -168,10 +177,6 @@ footer {
     color: #fff;
 }
 
-.social-links {
-    margin-bottom: 10px;
-}
-
 .social-links a {
     color: #d8bb7e;
     text-decoration: none;
@@ -183,18 +188,11 @@ footer {
     color: #fff;
 }
 
-footer p {
-    font-size: 0.9rem;
-    margin-top: 10px;
-    color: #bbb;
-}
-
-/* Logo no rodapé */
+/* Logo no Rodapé */
 .logo-footer {
-    flex: 1 1 150px; /* Ajusta o tamanho da logo */
-    max-width: 1550px;
+    flex: 1 1 150px;
     display: flex;
-    justify-content: flex-start; /* Alinha a logo à esquerda */
+    justify-content: flex-start;
     align-items: center;
 }
 
@@ -203,24 +201,44 @@ footer p {
     height: auto;
 }
 
-/* Responsividade para o rodapé */
+
+
+/* Media Queries */
+
+/* Mobile (<600px) */
 @media (max-width: 600px) {
-    .footer-content {
+    header {
+        padding: 150px 20px;
+    }
+
+    .navbar {
         flex-direction: column;
-        text-align: center;
+        align-items: flex-start;
     }
 
-    .sobre-nos, .links-importantes, .logo-footer {
-        text-align: center;
+    .nav-links {
+        display: none;
+        width: 100%;
+        flex-direction: column;
+        background: rgb(148, 141, 99);
     }
-    
-    .logo-footer {
-        margin-bottom: 20px; /* Dá um espaço entre a logo e as outras seções */
-    }
-}
 
-/* Responsividade */
-@media (max-width: 600px) {
+    .nav-links a {
+        padding: 15px;
+        text-align: left;
+    }
+
+    .hamburger {
+        display: block;
+        font-size: 1.5rem;
+        cursor: pointer;
+        color: white;
+    }
+
+    .hamburger.active + .nav-links {
+        display: flex;
+    }
+
     .banner h1 {
         font-size: 2rem;
     }
@@ -230,40 +248,57 @@ footer p {
     }
 
     .grid-produtos {
-        grid-template-columns: 1fr; /* Uma coluna em dispositivos pequenos */
+        grid-template-columns: 1fr;
+    }
+
+    .footer-content {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .logo-footer {
+        margin-bottom: 20px;
     }
 }
-.banner-intermediario {
-    grid-column: span 3; /* Ocupa toda a largura do grid */
-    background: url('/img/oi.jpg') no-repeat center center;
-    background-size: contain;
-    color: white;
-    text-align: center;
-    padding: 150px;
-    border-radius: 8px;
-    margin: 20px 0;
+
+/* Tablet (600px - 1024px) */
+@media (min-width: 600px) and (max-width: 1024px) {
+    .grid-produtos {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .banner h1 {
+        font-size: 2.5rem;
+    }
+
+    .banner p {
+        font-size: 1.2rem;
+    }
+
+    .logo img {
+        max-height: 50px;
+    }
 }
 
-.banner-intermediario h2 {
-    font-size: 1.8rem;
-    margin-bottom: 10px;
-}
+/* Desktop (>1024px) */
+@media (min-width: 1024px) {
+    .grid-produtos {
+        grid-template-columns: repeat(3, 1fr);
+    }
 
-.banner-intermediario p {
-    font-size: 1.2rem;
-    margin-bottom: 15px;
-}
+    .navbar {
+        justify-content: space-between;
+    }
 
-.banner-intermediario .btn {
-    padding: 10px 20px;
-    background: white;
-    color: #d17f00;
-    border-radius: 5px;
-    text-decoration: none;
-    transition: background 0.3s, color 0.3s;
-}
+    .banner h1 {
+        font-size: 3rem;
+    }
 
-.banner-intermediario .btn:hover {
-    background: #8b7951;
-    color: white;
+    .banner p {
+        font-size: 1.5rem;
+    }
+
+    .logo img {
+        max-height: 55px;
+    }
 }
